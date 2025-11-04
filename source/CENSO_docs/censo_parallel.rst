@@ -4,19 +4,10 @@
 Parallelization in CENSO
 ========================
 
-CENSO parallelizes the local execution of external program calls. For this it uses the built-in
-``multiprocessing`` and ``concurrent`` libraries. At the heart of the parallelization is 
-the ``execute`` function of the ``censo.parallel`` module. It consists of seven steps:
-
-1. Create the joblist from the provided information (conformers, instructions for QM programs, jobtype),
-2. set up the processor for parallel execution,
-3. copying of MO-files (if used),
-4. set the number of OpenMP threads (OMP) per subprocess for each job,
-5. parallel execution,
-6. collection of results and metadata,
+CENSO parallelizes the local execution of external program calls. For this it uses `dask <https://www.dask.org/>`_.
 
 .. hint::
-   CENSO cannot be parallelized over multiple nodes.
+   CENSO cannot be parallelized over multiple nodes (yet).
 
 If using the ``balance`` option from the general settings section, CENSO will assign the 
 number of OpenMP threads per job while trying to maximize core utilization at all times,
@@ -29,9 +20,8 @@ large ensembles the new algorithm approaches the efficiency of the basic load ba
 of assigning the same number of OpenMP threads for each job. Generally it is recommended
 to enable the ``balance`` option.
 
-.. warning::
-
-   In order for CENSO to be able to correctly determine the number of OpenMP threads per job,
-   the ``maxcores`` option needs to be set appropriately. If you use a workload manager such 
-   as PBS or Slurm, it is probably a good idea to set ``maxcores`` according to the queue
-   you're submitting to.
+.. hint::
+   CENSO will try to automatically detect the CPU resources that are available in your current environment.
+   It well first look for a provided argument to ``--maxcores`` or argument to the ``get_cluster`` function.
+   If nothing was provided, it will look first for SLURM environment variables. If none are found, it will try to
+   determine the number of CPUs with ``os.cpu_count()``. Make sure that you provide a valid number of cores.
