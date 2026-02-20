@@ -191,7 +191,8 @@ It should contain two keywords: ``{main}`` and ``{geom}``. These are later repla
 block, respectively. All further settings you add are inserted at the respective positions you put them in the
 template file. Example:
 
-.. code::
+.. code:: 
+
    {main}
    ! notrah
 
@@ -200,7 +201,8 @@ template file. Example:
    
 will yield:
 
-.. code::
+.. code:: 
+
    ! pbe-d4 def2-sv(p) def2/j ri defgrid1 loosescf gcp(dft/sv(p)) printgap
    ! notrah
    ...
