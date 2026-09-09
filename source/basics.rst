@@ -219,6 +219,8 @@ directly after a successful geometry optimization, this is done by using
   > xtb coord --ohess
 
 For the calculation on the input geometry use ``--hess`` instead.
+For large systems the cheaper O1NumHess variant can be chosen with ``--o1nh``,
+see :ref:`frequencies` for details.
 
 Dealing with Small Imaginary Frequencies
 ----------------------------------------

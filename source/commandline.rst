@@ -141,6 +141,15 @@ Frequency calculation
    :queue:
      setup, SP, [ANCopt, SP,] SP, Hessian, properties
 
+O1NumHess frequency calculation
+   :flag: ``--o1nh``
+   :description:
+     perform the numerical Hessian calculation using the ODLR approximation
+     (O1NumHess), which requires only O(1) gradient calculations, see
+     :ref:`frequencies`. Not compatible with frozen atoms, PTB or single atoms.
+   :queue:
+     setup, SP, Hessian, properties
+
 Molecular dynamics
    :flag: ``--[o]md``
    :description:
@@ -220,6 +229,18 @@ Options
 
 --dipole
     requests dipole printout (done by default)
+
+--o1nh
+    perform the numerical Hessian calculation using the ODLR approximation
+    (O1NumHess), see :ref:`frequencies`
+
+--imagmin REAL
+    magnitudes below this value (cm⁻¹) are ignored in the O1NumHess
+    imaginary frequency repair (default 5)
+
+--imagmax REAL
+    deepest imaginary frequency (cm⁻¹) considered in the O1NumHess
+    imaginary frequency repair (default 200)
 
 --wbo
     requests Wiberg bond order printout (done by default)

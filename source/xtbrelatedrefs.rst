@@ -53,6 +53,9 @@ __ https://doi.org/10.1021/acs.jctc.9b00143
 **SPH calculations:** Spicher, S.; Grimme, S.  *Single-Point Hessian Calculations for Improved Vibrational Frequencies and Rigid-Rotor-Harmonic-Oscillator Thermodynamics* *J. Chem. Theory Comput.* **2021**, *17 (3)*, 1701-1714.
 `DOI: 10.1021/acs.jctc.0c01306 <https://doi.org/10.1021/acs.jctc.0c01306>`_
 
+**O1NumHess calculations:** Wang, B.; Luo, S.; Wang, Z.; Liu, W. *O1NumHess: a Fast and Accurate Seminumerical Hessian Algorithm Using Only O(1) Gradients* *J. Chem. Theory Comput.* **2025**, *21 (21)*, 10893-10909.
+`DOI: 10.1021/acs.jctc.5c01354 <https://doi.org/10.1021/acs.jctc.5c01354>`_
+
 **Thermodynamics:** Spicher, S.; Grimme, S. *Efficient Computation of Free Energy Contributions for Association Reactions of Large Molecules* *J. Phys. Chem. Lett.* **2020**, *11 (16)*, 6606–6611
 `DOI: 10.1021/acs.jpclett.0c011930 <https://doi.org/10.1021/acs.jpclett.0c01930>`_
 

@@ -185,7 +185,53 @@ Of course, the calculated frequencies depend on the masses used for each atom. S
        element mass: int,real
            set mass of elements int to real
 
-Changes regarding ``sccacc`` or ``step`` should be made with caution, as large displacements or loose SCC accuracy can lead to unreliable frequencies due to excessive numerical noise in the calculations.   
+       imagmin=real
+           frequencies with magnitude below this imaginary frequency (cm⁻¹,
+           given as negative value) are treated as numerical noise, used in
+           the O1NumHess imaginary frequency repair and for the distorted
+           structure printout (default -5.0)
+
+       imagmax=real
+           deepest imaginary frequency (cm⁻¹, given as negative value)
+           considered in the O1NumHess imaginary frequency repair
+           (default -200.0)
+
+Changes regarding ``sccacc`` or ``step`` should be made with caution, as large displacements or loose SCC accuracy can lead to unreliable frequencies due to excessive numerical noise in the calculations.
+
+O1NumHess calculations
+_______________________
+
+By invoking the ``--o1nh`` command line argument, ``xtb`` performs the
+numerical Hessian calculation using the O1NumHess algorithm
+(`JCTC <https://doi.org/10.1021/acs.jctc.5c01354>`_). Based on the
+off-diagonal low rank (ODLR) property of molecular Hessians, the full
+Hessian is reconstructed from local contributions and a low-rank
+correction, requiring only O(1) gradient evaluations instead of the usual
+O(3N) ones for the default semi-numerical Hessian. This makes
+frequency calculations on large systems considerably cheaper.
+
+.. code:: text
+
+    xtb min.xyz --hess --o1nh
+
+The ``--o1nh`` flag should be combined with ``--hess``, ``--ohess``, or
+``--bhess``. It is not compatible with frozen atoms, PTB calculations or
+single atoms, and falls back to the default semi-numerical Hessian for the
+latter.
+
+Dealing with imaginary modes
+____________________________
+
+In the O1NumHess Hessian, small imaginary frequencies arising from
+numerical noise can be repaired automatically by iteratively adding gradient
+displacements along the projected imaginary modes. Two cutoffs control this
+repair and can be adjusted via command line arguments or xcontrol options:
+
+- ``--imagmin REAL``: magnitudes below this value (cm⁻¹) are treated as
+  numerical noise and ignored (default 5)
+- ``--imagmax REAL``: deepest imaginary frequency (cm⁻¹) considered in the
+  repair, more deeply imaginary modes are left to the regular Hessian path
+  (default 200)
 
 
 The thermostatistical calculations can be influenced by the ``$thermo`` block of the ``xcontrol`` file.
