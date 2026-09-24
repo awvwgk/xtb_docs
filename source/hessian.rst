@@ -219,6 +219,70 @@ The ``--o1nh`` flag should be combined with ``--hess``, ``--ohess``, or
 single atoms, and falls back to the default semi-numerical Hessian for the
 latter.
 
+Compliance constants
+____________________
+
+Hessian runs automatically perform a compliance analysis for nonperiodic
+systems with more than one atom and no frozen atoms. The analysis uses the
+redundant internal coordinates of the molecular graph: bond stretches,
+angles, dihedrals, and two fixed-frame bend components for each near-linear
+angle.
+
+For every coordinate, the stdout table reports the diagonal compliance
+element :math:`C_{ii}` in column ``C`` and its reciprocal
+:math:`1/C_{ii}`, the relaxed force constant, in column ``1/C``.
+Bond rows also report a local-mode frequency in column ``nu_loc/cm-1``.
+
+For compliance constants and relaxed force constants, see
+`Brandhorst and Grunenberg, Chem. Soc. Rev. 37 (2008), 1558
+<https://doi.org/10.1039/B717781J>`_ and
+`Grunenberg, Chem. Sci. 6 (2015), 4086
+<https://doi.org/10.1039/C5SC01322D>`_.
+For bond local-mode frequencies, see
+`Zou et al., J. Mol. Model. 19 (2013), 2865
+<https://doi.org/10.1007/s00894-012-1697-4>`_.
+
+For bond force constants,
+:math:`1\,E_\mathrm{h}/a_0^2 = 15.570\,\mathrm{N/cm}`.
+This conversion does not apply to angular coordinates or mixed-coordinate
+couplings. An exactly zero diagonal compliance is reported with
+``1/C = +Infinity`` (zero response).
+
+The stdout compliance table looks like this:
+
+.. code-block:: text
+
+        type                atoms                   coord value       C       1/C    nu_loc/cm-1
+   ---------------------------------------------------------------------------------------------
+     1 bond stretch  C   1   H  17                         2.06      3.11      0.32   3022.34
+     2 bond stretch  C   1   H  15                         2.06      3.23      0.31   2964.55
+     3 bond stretch  C   1   H  16                         2.06      3.24      0.31   2963.59
+
+The corresponding ``compliance.dat`` block looks like this:
+
+.. code-block:: text
+
+   # coord bond C 1-H 17 C_ii =    3.110887458847E+000 1/C_ii =    3.214516800201E-001
+   #   j  type atoms                C_ij
+      71  dih  H 15-C 1-N 2-C 3       -3.442827458512E-001
+      72  dih  H 15-C 1-N 2-C 6       -3.416049204564E-001
+      74  dih  H 16-C 1-N 2-C 6        3.388026166467E-001
+
+Here, coordinate :math:`i` is the C1–H17 bond identified in the block
+header. The columns mean:
+
+* ``j``: the other coordinate's number in the stdout table.
+* ``type``: ``bond`` for a stretch, ``ang`` for an angle, ``dih`` for a
+  dihedral, or ``lb1``/``lb2`` for the two linear-bend components.
+* ``atoms``: element symbols and atom numbers defining coordinate
+  :math:`j`.
+* ``C_ij``: the signed off-diagonal compliance coupling between the
+  block's coordinate :math:`i` and coordinate :math:`j`.
+
+Each block lists up to 20 off-diagonal couplings, ordered by decreasing
+absolute value. Couplings with absolute values below :math:`10^{-12}`
+are omitted.
+
 Dealing with imaginary modes
 ____________________________
 
