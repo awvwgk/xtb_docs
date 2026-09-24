@@ -176,8 +176,10 @@ No problem, just give us a hint at the mailing list or open an issue at `GitHub`
    :caption: CENSO
    
    CENSO_docs/censo
+   CENSO_docs/censo_example
    CENSO_docs/censorc
    CENSO_docs/censo_nmr
+   CENSO_docs/censo_uvvis
    CENSO_docs/abbreviations
    CENSO_docs/censo_extensive_keywords
    CENSO_docs/censo_parallel

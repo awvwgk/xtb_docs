@@ -13,7 +13,7 @@ Electron Ionizaion
   `DOI: 10.1039/D5CP00316D <https://doi.org/10.1039/D5CP00316D>`_
 
 Collision-Induced Dissociation 
-==================
+===============================
 
   J.Gorges, M. Engeser, S. Grimme *Evaluation of the QCxMS2 Method for the Calculation of Collision-Induced Dissociation Spectra via Automated Reaction Network Exploration.*
   *J. Am. Soc. Mass Spectrom.*, **2025**. 

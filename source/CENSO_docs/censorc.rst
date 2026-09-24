@@ -265,6 +265,7 @@ NMR
       - smd
     * - active_nuclei
       - active nuclei for NMR calculations as comma separated list, e.g. ``h,c,f``.
+      -
     * - template
       - whether to use a user defined template for this step.
       - False

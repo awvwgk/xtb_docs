@@ -54,7 +54,7 @@ There are some useful options for manipulating the output of the spectrum:
 
 
 Investigation of fragmentation pathways
-=============================
+=======================================
 
 
 A QCxMS2 calculation contains also information the fragmentation pathways leading to a specific peak in the mass spectrum.

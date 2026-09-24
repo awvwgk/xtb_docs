@@ -35,7 +35,7 @@ Ensemble properties available for calculation are:
 
 1. NMR spectra,
 2. Optical Rotation,
-2. UV/Vis spectra.
+3. UV/Vis spectra.
 
 In the property calculation steps the ensemble is not further modified. However, they require at least 
 one ensemble optimization step to be run beforehand for energy rankings and Boltzmann populations.

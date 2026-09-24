@@ -20,7 +20,9 @@ Generating the ensemble
 -----------------------
 
 Coordinates for the glycerol molecule in xyz-format are provided below.
+
 .. code:: text
+
     14
 
     C         -0.0332833509        0.7993977341       -0.5076202431
@@ -41,7 +43,8 @@ Coordinates for the glycerol molecule in xyz-format are provided below.
 To generate the ensemble using CREST you should have these coordinates in a file called ``glycerol.xyz``:
 
 .. code:: sh
-   crest glycerol.xyz --nmr --alpb chcl3 > crest.out
+
+    crest glycerol.xyz --nmr --alpb chcl3 > crest.out
 
 In this example, we want to calculate the NMR spectrum in chloroform, which is why we use the ALPB solvation model in CREST.
 
@@ -59,7 +62,8 @@ and the geometry optimization step, and of course the NMR calculation. Specifyin
 To run CENSO:
 
 .. code:: sh
-   censo -i crest_conformers.xyz --screening --optimization --nmr --solvent chcl3 > censo.out
+
+    censo -i crest_conformers.xyz --screening --optimization --nmr --solvent chcl3 > censo.out
 
 CENSO should run out of the box without having to configure anything if all programs you want to use are found in your ``$PATH``. The defaults for screening
 are to use TURBOMOLE with COSMOtherm. For the geometry optimization, the default uses TURBOMOLE with ANCOPT as driver (xtb). If you need to modify these settings,
@@ -67,7 +71,8 @@ you can use ``censo --new-config`` to generate a new configuration file or just 
 then use this configuration file with:
 
 .. code:: sh
-   censo -i crest_confermers.xyz -S -O --nmr --inprc censo2rc_NEW --solvent chcl3 > censo.out
+
+    censo -i crest_confermers.xyz -S -O --nmr --inprc censo2rc_NEW --solvent chcl3 > censo.out
 
 .. hint::
    There are short flags for the ensemble optimization steps for the CLI: ``-P`` for prescreening, ``-S`` for screening, ``-O`` for optimization, ``-R`` for refinement.
@@ -82,7 +87,8 @@ ANMR requires a directory called ``anmr`` with a specific structure to be presen
 To set up the ``anmr`` directory, you can use the provided script:
 
 .. code:: sh
-   c2anmr
+
+    c2anmr
 
 Then configure the ``.anmrrc`` file located in the ``anmr`` directory according to your requirements.
 You can read more about the setup in :ref:`nmr`.
@@ -90,11 +96,13 @@ You can read more about the setup in :ref:`nmr`.
 Then change into the ``anmr`` directory and run:
 
 .. code:: sh
-   anmr -plain > anmr.out
+
+    anmr -plain > anmr.out
 
 To plot the spectrum, you can use the ``nmrplot`` script. Run it in the ``anmr`` directory:
 
 .. code:: sh
-   nmrplot
+
+    nmrplot
 
 This will provide you with a plot of the NMR spectrum. You can modify plotting options via the CLI of the script.
